@@ -30,14 +30,7 @@ function get (req, res, next) {
 }
 
 function find (req, res, next) {
-    var query = {
-        $or: [
-            { 'name': { $regex: req.body.query, $options: 'i' } },
-            { 'room': { $regex: req.body.query, $options: 'i' } }
-        ]
-    };
-
-    return Inventory.find(query);
+    return Inventory.find(genSearchQuery(req));
 }
 
 function handleError(res, statusCode) {
@@ -55,4 +48,16 @@ function respondWithResult(res, statusCode) {
     }
     return null;
   };
+}
+
+function genSearchQuery (req) {
+    if (req.body.all) {
+        return {};
+    }
+    return {
+        $or: [
+            { 'name': { $regex: req.body.query, $options: 'i' } },
+            { 'room': { $regex: req.body.query, $options: 'i' } }
+        ]
+    }
 }

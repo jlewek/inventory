@@ -25,6 +25,7 @@ import footer from '../components/footer/footer.component';
 import main from './main/main.component';
 import constants from './app.constants';
 import util from '../components/util/util.module';
+import Debuger from './app.service';
 
 import './app.css';
 
@@ -32,6 +33,7 @@ angular.module('learningcurveApp', [ngCookies, ngResource, ngSanitize, uiRouter,
   account, admin, navbar, footer, main, constants, util, im
 ])
   .config(routeConfig)
+  .service('Debuger', Debuger)
   .run(function($rootScope, $location, Auth) {
     'ngInject';
     // Redirect to login if route requires auth and you're not logged in

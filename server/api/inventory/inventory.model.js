@@ -30,7 +30,7 @@ InventoryItem.methods.getItemById = function (body, callback) {
 }
 
 InventoryItem.methods.create = function (body) {
-    var newItem = new InventoryItem(Object.assign({}, body));
+    var newItem = new InventoryItem(Object.assign({}, body.doc));
     newItem.created = new Date();
     return newItem.save(newItem);
 }

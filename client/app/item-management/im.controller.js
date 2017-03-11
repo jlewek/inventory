@@ -6,24 +6,24 @@
 
 export default class ImController {
   /*@ngInject*/
-  constructor($http) {
+  constructor($http, InventoryModel, Modal, Debuger) {
     this.$http = $http;
+    this.InventoryModel = InventoryModel;
+    this.Modal = Modal;
+    this.Debuger = Debuger;
   }
 
   $onInit() {
-    this.items = [
-       {
-         name: 'Komp',
-         price: 2000,
-         sellprice: 1000,
-         corrupted: false,
-         inUse: true,
-         docs: [],
-         created: Date.now(),
-         removed: false,
-         _canBeRemoved: true,
-         user: 1
-       }
-   ];
+    this.items = [];
+
+    this.InventoryModel.getAll().then((docs) => {
+      if (angular.isArray(docs)) {
+        this.items = docs;
+      } else {
+        this.Debuger.log();
+      }
+    }, () => {
+      console.log('f');
+    });
   }
 }
