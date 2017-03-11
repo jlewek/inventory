@@ -15,8 +15,7 @@ export default class ImController {
 
   $onInit() {
     this.items = [];
-
-    this.addItem = this.modal.addItem();
+    this.itemToAdd = {};
 
     this.InventoryModel.getAll().then((data) => {
       var docs = data.data;
@@ -27,6 +26,11 @@ export default class ImController {
       }
     }, () => {
       console.log('ImController: failed to fetched.');
+    });
+  }
+  addItem() {
+    this.modal.addItem()(() => {
+      this.InventoryModel.create(this.itemToAdd);
     });
   }
 

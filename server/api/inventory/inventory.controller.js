@@ -20,8 +20,8 @@ function remove (req, res, next) {
 }
 
 function get (req, res, next) {
-    var id = req.param.id;
-    if (!req.param.id) {
+    var id = req.params.id;
+    if (!req.params.id) {
         return handleError(res)({ msg: `Wrong or no id specified: ${id}` });
     }
     return Inventory.getItemById(id)

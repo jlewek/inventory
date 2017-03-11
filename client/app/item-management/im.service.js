@@ -13,14 +13,18 @@ export default function InventoryModel($http, $q) {
 
     function getItemById (id) {
         debug(!id, 'getItemById: No id specified.');
-        return $http.get('/api/inventory/'+ id)
+        return new Promise(function (resolve, reject) {
+            $http.get('/api/inventory/'+ id).then(function (data) {
+                resolve(data && data.data || []);
+            }, reject);
+        });
     }
 
     function getAll (opts) {
         var _opts = Object.assign({ all: true, toSell: false }, opts || {});
         return new Promise(function (resolve, reject) {
             $http.post('/api/inventory/search', _opts).then(function (data) {
-                resolve(data || data.data || []);
+                resolve(data && data.data || []);
             }, reject);
         });
     }
@@ -29,7 +33,7 @@ export default function InventoryModel($http, $q) {
         debug(!id, 'removeItemById: No id specified.');        
         return new Promise(function (resolve, reject) {
             $http.delete('/api/inventory/'+ id).then(function (data) {
-                resolve(data || data.data || []);
+                resolve(data && data.data || []);
             }, reject);
         });
     }
@@ -38,7 +42,7 @@ export default function InventoryModel($http, $q) {
         debug(!query, 'search: No query specified.');        
         return new Promise(function (resolve, reject) {
             $http.post('/api/inventory/search', { query: query }).then(function (data) {
-                resolve(data || data.data || []);
+                resolve(data && data.data || []);
             }, reject);
         }); 
     }
@@ -47,7 +51,7 @@ export default function InventoryModel($http, $q) {
         debug(!doc, 'create: No doc specified.');        
         return new Promise(function (resolve, reject) {
             $http.post('/api/inventory', { doc: doc }).then(function (data) {
-                resolve(data || data.data || []);
+                resolve(data && data.data || []);
             }, reject);
         }); 
     }
