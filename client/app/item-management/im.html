@@ -19,10 +19,11 @@
         <td>{{item.docs}}</td>
         <td>Dima</td>
         <td>
-            <button class="btn btn-small" ng-click="vm.delete($index)">Edytuj</button>
-            <button class="btn btn-small" ng-click="vm.delete($index)">Usun</button>
+            <button class="btn btn-small" ng-click="vm.delete(item._id)">Edytuj</button>
+            <button class="btn btn-small" ng-click="vm.delete(item._id)">Usun</button>
         </td>
       </tr>
     </tbody>
   </table>
 </div>
+ 
