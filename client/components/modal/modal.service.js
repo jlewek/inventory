@@ -75,35 +75,32 @@ export function Modal($rootScope, $uibModal) {
         return function(accept, dismiss) {
           var args = Array.prototype.slice.call(arguments);
           var name = args.shift();
-          var deleteModal;
+          var addItem;
 
-          deleteModal = openModal({
+          addItem = openModal({
             modal: {
               dismissable: true,
               title: 'Dodaj przedmiot',
-              html: `<div class="form-group label-static">
-                        <label for="i2" class="control-label">Nazwa</label>
-                        <input type="text" name="name" class="form-control" model="vm.itemToAdd.name" id="i2" placeholder="nazwa">
-                    </div>`,
+              html: `<input type="text">`,
               buttons: [{
                 classes: 'btn-info',
                 text: 'Dodaj',
                 click(e) {
                   accept = accept || function () {};
-                  deleteModal.close(e);
+                  addItem.close(e);
                 }
               }, {
                 classes: 'btn-default',
                 text: 'Anuluj',
                 click(e) {
                   dismiss = dismiss || function () {};
-                  deleteModal.dismiss(e);
+                  addItem.dismiss(e);
                 }
               }]
             }
           }, 'modal-info');
 
-          deleteModal.result.then(function(event) {
+          addItem.result.then(function(event) {
             del.apply(event, args);
           });
         };
