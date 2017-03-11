@@ -10,7 +10,8 @@ export class NavbarComponent {
   },
   {
     title: 'Managment',
-    state: 'im'
+    state: 'im',
+    role: 'admin'
   }];
 
   isCollapsed = true;
@@ -21,6 +22,7 @@ export class NavbarComponent {
     this.isLoggedIn = Auth.isLoggedInSync;
     this.isAdmin = Auth.isAdminSync;
     this.getCurrentUser = Auth.getCurrentUserSync;
+    this.hasRole = Auth.hasRole;
   }
 
 }
