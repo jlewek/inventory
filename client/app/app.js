@@ -20,6 +20,7 @@ import _Auth from '../components/auth/auth.module';
 import account from './account';
 import admin from './admin';
 import navbar from '../components/navbar/navbar.component';
+import im from './item-management';
 import footer from '../components/footer/footer.component';
 import main from './main/main.component';
 import constants from './app.constants';
@@ -28,7 +29,7 @@ import util from '../components/util/util.module';
 import './app.css';
 
 angular.module('learningcurveApp', [ngCookies, ngResource, ngSanitize, uiRouter, uiBootstrap, _Auth,
-  account, admin, navbar, footer, main, constants, util
+  account, admin, navbar, footer, main, constants, util, im
 ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {

@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <table class="table">
+    <thead>
+      <tr>
+        <td>Nazwa przedmiotu</td>
+        <td>Cena</td>
+        <td>Dokumenty</td>
+        <td>Utworzono</td>
+        <td>Utworzono przez</td>
+        <td>Opcje</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in vm.items">
+        <td>{{item.name}}</td>
+        <td>{{item.price}}</td>
+        <td>{{item.docs.length}}</td>
+        <td>{{item.docs}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
