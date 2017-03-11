@@ -1,6 +1,6 @@
 <div class="row">
-    <div ng-repeat="item in itemData" class="col-md-3">
-        <div class="card">
+    <div ng-repeat="item in itemData track by item._id" class="col-md-3">
+        <div class="card" ui-sref="item({'id': item._id})">
 
             <div class="card-height-indicator"></div>
 
@@ -12,9 +12,10 @@
             </div>
 
             <div class="card-body">
-                <p><b>Price: <b> {{item.price.buy}}</p>
+                <p><b>Price: <b> {{item.price.buy}}</b></p>
                 <p><b>Description: </b> {{item.description}}</p>
             </div>
         </div>
     </div>
 </div>
+  </div>
