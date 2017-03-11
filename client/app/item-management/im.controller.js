@@ -14,17 +14,12 @@ export default class ImController {
   }
 
   $onInit() {
-    this.items = [];
+    var self = this;
     this.itemToAdd = {};
 
-    this.InventoryModel.getAll().then((data) => {
-      if (angular.isArray(data)) {
-        this.items = data;
-      } else {
-        this.Debuger.log(true, 'ImController: docs are not array');
-      }
-    }, () => {
-      console.log('ImController: failed to fetched.');
+    this.InventoryModel.getAll().then(function(items) {
+      console.log(items);
+      self.items = items;
     });
   }
   addItem() {
@@ -34,7 +29,9 @@ export default class ImController {
   }
   delete(index) {
     console.log('deleting item at index', index);
-    this.InventoryModel.removeItemById(this.items[index]);
+    this.InventoryModel.removeItemById(index).then(function(info){
+      console.log(info);
+    });
     this.items = this.items.splice(1, index);
   }
 }

@@ -8,7 +8,6 @@ export default function ItemList () {
         InventoryModel.getAll().then(function(itemData){
           $scope.itemData = itemData;
         });
-        // data mock
       }],
       template: require( './mainItemList.html')
     }
