@@ -49,7 +49,9 @@ module.exports = function makeWebpackConfig(options) {
                 'angular-sanitize',
                 'angular-ui-bootstrap',
                 'angular-ui-router',
-                'lodash'
+                'lodash',
+                'jquery',
+                'bootstrap-material-design'
             ]
         };
     }
@@ -89,6 +91,9 @@ module.exports = function makeWebpackConfig(options) {
             modulesDirectories: [
                 'node_modules'
             ],
+            alias: {
+              jquery: "jquery/src/jquery"
+            },
             extensions: ['', '.js', '.ts']
         };
     }
@@ -232,6 +237,11 @@ module.exports = function makeWebpackConfig(options) {
          * See: https://github.com/s-panferov/awesome-typescript-loader#forkchecker-boolean-defaultfalse
          */
         new ForkCheckerPlugin(),
+
+        new webpack.ProvidePlugin({
+          $: "jquery",
+          jQuery: "jquery"
+        }),
 
         // Reference: https://github.com/webpack/extract-text-webpack-plugin
         // Extract css files
