@@ -16,12 +16,27 @@ export function Modal($rootScope, $uibModal, $interpolate) {
     angular.extend(modalScope, scope);
 
     return $uibModal.open({
-      template: '<input ng-model="itemToAdd.name" type="text">',
+      template: require('./modal.html'),
       windowClass: modalClass,
-      controller: ['$scope', function ($scope) {
-        $scope.itemToAdd = {
-          name: 'ffdzkjvbhg'
-        };
+      controller: ['$scope', 'InventoryModel', function ($scope, InventoryModel) {
+          $scope.itemToAdd = {
+            price: {
+              buy: ''
+            }
+          };
+
+          InventoryModel.getAll().then(function () {
+              console.log(arguments);
+          })
+
+          $scope.addItem = function () {
+            console.log($scope.itemToAdd);
+              InventoryModel.create( $scope.itemToAdd ).then(function () {
+                  console.log('s', arguments);
+              }, function () {
+                  console.log('f', arguments);
+              });
+          }
       }]
     });
   }

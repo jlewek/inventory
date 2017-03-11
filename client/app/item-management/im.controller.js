@@ -30,7 +30,7 @@ export default class ImController {
   }
   addItem() {
     this.modal.addItem()(() => {
-      this.InventoryModel.create(this.itemToAdd);
+      
     });
   }
   delete(index) {

@@ -22,7 +22,7 @@ var InventoryItem = new mongoose.Schema({
       { name: String, type: String, content: Buffer }
   ],
   room: String,
-  user: { type: mongoose.Schema.ObjectId, ref: 'User' }
+  user: String
 });
 
 InventoryItem.methods.getItemById = function (body, callback) {
@@ -32,7 +32,7 @@ InventoryItem.methods.getItemById = function (body, callback) {
 InventoryItem.methods.create = function (body) {
     var newItem = new InventoryItem(Object.assign({}, body.doc));
     newItem.created = new Date();
-    return newItem.save(newItem);
+    return newItem.save();
 }
 
 InventoryItem.methods.removeItem = function (body) {

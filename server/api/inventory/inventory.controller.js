@@ -8,6 +8,7 @@ module.exports = {
 };
 
 function create (req, res, next) {
+    console.log(create, req.body);
     return Inventory.create(req.body)
     .then(respondWithResult(res, 201))
     .catch(handleError(res));
@@ -30,7 +31,11 @@ function get (req, res, next) {
 }
 
 function find (req, res, next) {
-    return Inventory.find(genSearchQuery(req));
+    var query = genSearchQuery(req);
+    
+    return Inventory.find({})
+    .then(respondWithResult(res, 200))
+    .catch(handleError(res));
 }
 
 function handleError(res, statusCode) {
@@ -51,6 +56,7 @@ function respondWithResult(res, statusCode) {
 }
 
 function genSearchQuery (req) {
+    console.dir(req.body);
     if (req.body.all) {
         return {};
     }

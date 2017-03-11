@@ -50,7 +50,9 @@ export default function InventoryModel($http, $q) {
     function create (doc) {
         debug(!doc, 'create: No doc specified.');        
         return new Promise(function (resolve, reject) {
+            console.log('connecting...');
             $http.post('/api/inventory', { doc: doc }).then(function (data) {
+                console.log('connected');
                 resolve(data && data.data || []);
             }, reject);
         }); 
