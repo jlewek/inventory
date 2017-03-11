@@ -33,7 +33,7 @@ function get (req, res, next) {
 function find (req, res, next) {
     var query = genSearchQuery(req);
     
-    return Inventory.find({})
+    return Inventory.find(query)
     .then(respondWithResult(res, 200))
     .catch(handleError(res));
 }
