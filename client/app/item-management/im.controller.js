@@ -9,14 +9,14 @@ export default class ImController {
   constructor($http, InventoryModel, Modal, Debuger) {
     this.$http = $http;
     this.InventoryModel = InventoryModel;
-    window.Modal = Modal;
-    this.Modal = Modal;
+    this.modal = Modal.confirm;
     this.Debuger = Debuger;
   }
 
   $onInit() {
     this.items = [];
 
+    this.addItem = this.modal.addItem();
 
     this.InventoryModel.getAll().then((data) => {
       var docs = data.data;

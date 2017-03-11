@@ -69,6 +69,44 @@ export function Modal($rootScope, $uibModal) {
             del.apply(event, args);
           });
         };
+      },
+      addItem(del = angular.noop) {
+
+        return function() {
+          var args = Array.prototype.slice.call(arguments);
+          var name = args.shift();
+          var deleteModal;
+
+          deleteModal = openModal({
+            modal: {
+              dismissable: true,
+              title: 'Dodaj przedmiot',
+              html: `<div class="form-group label-static">
+                        <label for="i2" class="control-label">Nazwa</label>
+                        <input type="text" name="name" class="form-control" id="i2" placeholder="nazwa">
+
+                        <p class="help-block">This is a hint as a <code>p.help-block.hint</code></p>
+                    </div>`,
+              buttons: [{
+                classes: 'btn-info',
+                text: 'Dodaj',
+                click(e) {
+                  deleteModal.close(e);
+                }
+              }, {
+                classes: 'btn-default',
+                text: 'Anuluj',
+                click(e) {
+                  deleteModal.dismiss(e);
+                }
+              }]
+            }
+          }, 'modal-info');
+
+          deleteModal.result.then(function(event) {
+            del.apply(event, args);
+          });
+        };
       }
     }
   };

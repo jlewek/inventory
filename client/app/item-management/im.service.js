@@ -18,22 +18,38 @@ export default function InventoryModel($http, $q) {
 
     function getAll (opts) {
         var _opts = Object.assign({ all: true, toSell: false }, opts || {});
-        return $http.post('/api/inventory/', _opts)
+        return new Promise(function (resolve, reject) {
+            $http.post('/api/inventory/search', _opts).then(function (data) {
+                resolve(data || data.data || []);
+            });
+        }, reject);
     }
 
     function removeItemById (id) {
         debug(!id, 'removeItemById: No id specified.');        
-        return $http.delete('/api/inventory/'+ id)
+        return new Promise(function (resolve, reject) {
+            $http.delete('/api/inventory/'+ id).then(function (data) {
+                resolve(data || data.data || []);
+            });
+        });
     }
 
     function search (query) {
         debug(!query, 'search: No query specified.');        
-        return $http.post('/api/inventory/search', { query: query })
+        return new Promise(function (resolve, reject) {
+            $http.post('/api/inventory/search', { query: query }).then(function (data) {
+                resolve(data || data.data || []);
+            });
+        }); 
     }
     
     function create (doc) {
         debug(!doc, 'create: No doc specified.');        
-        return $http.post('/api/inventory/search', { doc: doc })
+        return new Promise(function (resolve, reject) {
+            $http.post('/api/inventory', { doc: doc }).then(function (data) {
+                resolve(data || data.data || []);
+            });
+        }); 
     }
 
     function debug (fire, msg) {
