@@ -72,7 +72,7 @@ export function Modal($rootScope, $uibModal) {
       },
       addItem(del = angular.noop) {
 
-        return function() {
+        return function(accept, dismiss) {
           var args = Array.prototype.slice.call(arguments);
           var name = args.shift();
           var deleteModal;
@@ -83,20 +83,20 @@ export function Modal($rootScope, $uibModal) {
               title: 'Dodaj przedmiot',
               html: `<div class="form-group label-static">
                         <label for="i2" class="control-label">Nazwa</label>
-                        <input type="text" name="name" class="form-control" id="i2" placeholder="nazwa">
-
-                        <p class="help-block">This is a hint as a <code>p.help-block.hint</code></p>
+                        <input type="text" name="name" class="form-control" model="vm.itemToAdd.name" id="i2" placeholder="nazwa">
                     </div>`,
               buttons: [{
                 classes: 'btn-info',
                 text: 'Dodaj',
                 click(e) {
+                  accept = accept || function () {};
                   deleteModal.close(e);
                 }
               }, {
                 classes: 'btn-default',
                 text: 'Anuluj',
                 click(e) {
+                  dismiss = dismiss || function () {};
                   deleteModal.dismiss(e);
                 }
               }]
