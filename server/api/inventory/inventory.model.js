@@ -6,9 +6,9 @@ var InventoryItem = new mongoose.Schema({
   name: String,
   description: String,
   price: {
-      buy: Float,
-      actual: Float,
-      sell: Float
+      buy: Number,
+      actual: Number,
+      sell: Number
   },
   inUse: Boolean,
   broken: Boolean,
@@ -24,4 +24,9 @@ var InventoryItem = new mongoose.Schema({
   room: String
 });
 
-export default mongoose.model('Thing', InventoryItem);
+InventoryItem.methods.getItemById = function (body, callback) {
+    
+    return this.findById(id);
+}
+
+module.exports = mongoose.model('InventoryItem', InventoryItem);

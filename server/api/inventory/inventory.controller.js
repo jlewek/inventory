@@ -2,8 +2,9 @@ import Inventory from './inventory.model';
 
 module.exports = {
     create: create,
-    removeItem: removeItem,
-    getItems: getItems
+    remove: remove,
+    get: get,
+    find: find
 };
 
 function create (req, res, next) {
@@ -12,11 +13,19 @@ function create (req, res, next) {
     .catch(handleError(res));
 }
 
-function removeItem (req, res, next) {
-
+function remove (req, res, next) {
+    return Inventory.removeItem(req.body)
+    .then(respondWithResult(res, 200))
+    .catch(handleError(res));
 }
 
-function getItems (req, res, next) {
+function get (req, res, next) {
+    return Inventory.getItemById(req.query)
+    .then(respondWithResult(res, 200))
+    .catch(handleError(res));
+}
+
+function find (req, res, next) {
 
 }
 
