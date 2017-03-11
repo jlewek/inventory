@@ -8,7 +8,9 @@ export default function ItemList () {
         /*InventoryModel.getAll().then(function(itemData){
             $scope.itemData = itemData;
         });*/
-
+        InventoryModel.getAll().then(function(itemData){
+            console.log(itemData);
+        });
         // data mock
         var itemData = [];
         for(var i=0;i<20;i++) {
