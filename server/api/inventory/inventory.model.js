@@ -35,14 +35,4 @@ InventoryItem.methods.create = function (body, cb) {
     return newItem.save(cb);
 }
 
-InventoryItem.methods.removeItem = function (body) {
-    var id = body.id;
-    return new Promise(function (resolve, reject) {
-        this.findById(id).then(function (doc) {
-            resolve();
-            doc.remove();
-        }).catch(reject);
-    });
-}
-
 module.exports = mongoose.model('InventoryItem', InventoryItem);

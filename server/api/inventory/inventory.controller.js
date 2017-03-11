@@ -19,9 +19,11 @@ function create (req, res, next) {
 }
 
 function remove (req, res, next) {
-    return Inventory.removeItem(req.body)
-    .then(respondWithResult(res, 200))
-    .catch(handleError(res));
+    var id = req.params.id;
+    Inventory.findById(id).then(function (doc) {
+            doc.remove();
+            respondWithResult(res, 200)(doc);
+        }).catch(handleError(res));
 }
 
 function get (req, res, next) {
