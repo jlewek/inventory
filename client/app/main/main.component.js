@@ -1,6 +1,7 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import routing from './main.routes';
+import ItemList from './mainItemList.directive';
 
 export class MainController {
 
@@ -39,4 +40,5 @@ export default angular.module('learningcurveApp.main', [uiRouter])
     template: require('./main.html'),
     controller: MainController
   })
+  .directive('itemList', ItemList)
   .name;
