@@ -21,8 +21,8 @@ export default function InventoryModel($http, $q) {
         return new Promise(function (resolve, reject) {
             $http.post('/api/inventory/search', _opts).then(function (data) {
                 resolve(data || data.data || []);
-            });
-        }, reject);
+            }, reject);
+        });
     }
 
     function removeItemById (id) {
@@ -30,7 +30,7 @@ export default function InventoryModel($http, $q) {
         return new Promise(function (resolve, reject) {
             $http.delete('/api/inventory/'+ id).then(function (data) {
                 resolve(data || data.data || []);
-            });
+            }, reject);
         });
     }
 
@@ -39,7 +39,7 @@ export default function InventoryModel($http, $q) {
         return new Promise(function (resolve, reject) {
             $http.post('/api/inventory/search', { query: query }).then(function (data) {
                 resolve(data || data.data || []);
-            });
+            }, reject);
         }); 
     }
     
@@ -48,7 +48,7 @@ export default function InventoryModel($http, $q) {
         return new Promise(function (resolve, reject) {
             $http.post('/api/inventory', { doc: doc }).then(function (data) {
                 resolve(data || data.data || []);
-            });
+            }, reject);
         }); 
     }
 
