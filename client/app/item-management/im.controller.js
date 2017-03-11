@@ -14,9 +14,12 @@ export default class ImController {
   }
 
   $onInit() {
-    this.items = [];
+    var self = this;
     this.itemToAdd = {};
 
+    this.InventoryModel.getAll().then(function(items) {
+      self.items = items;
+    });
     this.InventoryModel.getAll().then((data) => {
       var docs = data.data;
       if (angular.isArray(docs)) {
