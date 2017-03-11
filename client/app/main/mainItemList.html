@@ -1,0 +1,20 @@
+<div class="row">
+    <div ng-repeat="item in itemData" class="col-md-3">
+        <div class="card">
+
+            <div class="card-height-indicator"></div>
+
+            <div class="card-content">
+
+            <div class="card-image">
+                <img src="{{item.image[0]}}" alt="Loading image...">
+                <h3 class="card-image-headline">{{item.name}}</h3>
+            </div>
+
+            <div class="card-body">
+                <p><b>Price: <b> {{item.price.buy}}</p>
+                <p><b>Description: </b> {{item.description}}</p>
+            </div>
+        </div>
+    </div>
+</div>
