@@ -17,7 +17,10 @@
         <td>{{item.docs.length}}</td>
         <td>{{item.docs}}</td>
         <td>Dima</td>
-        <td><i class="material-icons">more_vert</i></td>
+        <td>
+            <button class="btn btn-small" ng-click="vm.delete($index)">Edytuj</button>
+            <button class="btn btn-small" ng-click="vm.delete($index)">Usun</button>
+        </td>
       </tr>
     </tbody>
   </table>

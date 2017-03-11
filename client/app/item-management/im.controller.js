@@ -26,4 +26,10 @@ export default class ImController {
       console.log('f');
     });
   }
+
+  delete(index) {
+    console.log("deleting item at index",index);
+    this.InventoryModel.removeItemById(this.items[index]);
+    this.items = this.items.splice(1, index);
+  }
 }

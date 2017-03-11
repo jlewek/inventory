@@ -41,6 +41,7 @@ module.exports = function makeWebpackConfig(options) {
             app: './client/app/app.js',
             polyfills: './client/polyfills.js',
             vendor: [
+                'jquery',
                 'angular',
                 'angular-animate',
                 'angular-aria',
@@ -50,7 +51,6 @@ module.exports = function makeWebpackConfig(options) {
                 'angular-ui-bootstrap',
                 'angular-ui-router',
                 'lodash',
-                'jquery',
                 'bootstrap-material-design'
             ]
         };
