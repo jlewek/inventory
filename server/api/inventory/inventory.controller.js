@@ -4,6 +4,7 @@ module.exports = {
     create: create,
     remove: remove,
     get: get,
+    getAll: getAll,
     find: find
 };
 
@@ -28,7 +29,13 @@ function get (req, res, next) {
     if (!req.params.id) {
         return handleError(res)({ msg: `Wrong or no id specified: ${id}` });
     }
-    return Inventory.getItemById(id)
+    return Inventory.findById(id)
+    .then(respondWithResult(res, 200))
+    .catch(handleError(res));
+}
+
+function getAll (req, res, next) {
+    return Inventory.find({})
     .then(respondWithResult(res, 200))
     .catch(handleError(res));
 }
@@ -59,10 +66,6 @@ function respondWithResult(res, statusCode) {
 }
 
 function genSearchQuery (req) {
-    console.dir(req.body);
-    if (req.body.all) {
-        return {};
-    }
     return {
         $or: [
             { 'name': { $regex: req.body.query, $options: 'i' } },

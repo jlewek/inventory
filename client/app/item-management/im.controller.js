@@ -18,9 +18,8 @@ export default class ImController {
     this.itemToAdd = {};
 
     this.InventoryModel.getAll().then((data) => {
-      var docs = data.data;
-      if (angular.isArray(docs)) {
-        this.items = docs;
+      if (angular.isArray(data)) {
+        this.items = data;
       } else {
         this.Debuger.log(true, 'ImController: docs are not array');
       }

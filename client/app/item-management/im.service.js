@@ -21,9 +21,8 @@ export default function InventoryModel($http, $q) {
     }
 
     function getAll (opts) {
-        var _opts = Object.assign({ all: true, toSell: false }, opts || {});
         return new Promise(function (resolve, reject) {
-            $http.post('/api/inventory/search', _opts).then(function (data) {
+            $http.get('/api/inventory').then(function (data) {
                 resolve(data && data.data || []);
             }, reject);
         });
