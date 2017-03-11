@@ -7,6 +7,7 @@ export default function routes($stateProvider) {
 
   $stateProvider.state('item', {
     url: '/item/:id',
+    params: {'id': null},
     template: require('./itemview.html'),
     controller: 'ItemViewController',
     controllerAs: 'vm',

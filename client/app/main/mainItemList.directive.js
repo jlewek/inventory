@@ -1,9 +1,9 @@
 import angular from 'angular';
 import InventoryModel from '../item-management/im.service';
 
-export default function ItemList () { 
+export default function ItemList () {
     return {
-      controller: ['$scope', 'InventoryModel',  function ($scope,InventoryModel) {
+      controller: ['$scope', 'InventoryModel',  function ($scope, InventoryModel) {
         //TODO: get data from service and remove mock
         /*InventoryModel.getAll().then(function(itemData){
             $scope.itemData = itemData;
@@ -15,6 +15,7 @@ export default function ItemList () {
         var itemData = [];
         for(var i=0;i<20;i++) {
           itemData.push({
+            _id: i,
             name: 'Test',
             description: 'test abc',
             price: {
