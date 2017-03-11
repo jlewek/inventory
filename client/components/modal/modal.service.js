@@ -2,7 +2,7 @@
 
 import angular from 'angular';
 
-export function Modal($rootScope, $uibModal) {
+export function Modal($rootScope, $uibModal, $interpolate) {
    'ngInject';
   /**
    * Opens a modal
@@ -16,9 +16,13 @@ export function Modal($rootScope, $uibModal) {
     angular.extend(modalScope, scope);
 
     return $uibModal.open({
-      template: require('./modal.html'),
+      template: '<input ng-model="itemToAdd.name" type="text">',
       windowClass: modalClass,
-      scope: modalScope
+      controller: ['$scope', function ($scope) {
+        $scope.itemToAdd = {
+          name: 'ffdzkjvbhg'
+        };
+      }]
     });
   }
 
@@ -70,9 +74,10 @@ export function Modal($rootScope, $uibModal) {
           });
         };
       },
+
       addItem(del = angular.noop) {
 
-        return function(accept, dismiss) {
+        return function(scope, accept, dismiss) {
           var args = Array.prototype.slice.call(arguments);
           var name = args.shift();
           var addItem;
@@ -81,11 +86,12 @@ export function Modal($rootScope, $uibModal) {
             modal: {
               dismissable: true,
               title: 'Dodaj przedmiot',
-              html: `<input type="text">`,
+              html: '<input ng-model="vm.itemToAdd.name" type="text">',
               buttons: [{
                 classes: 'btn-info',
                 text: 'Dodaj',
                 click(e) {
+                  console.dir(e);
                   accept = accept || function () {};
                   addItem.close(e);
                 }
@@ -101,6 +107,7 @@ export function Modal($rootScope, $uibModal) {
           }, 'modal-info');
 
           addItem.result.then(function(event) {
+            console.log('t', event);
             del.apply(event, args);
           });
         };

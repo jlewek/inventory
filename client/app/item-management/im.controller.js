@@ -33,7 +33,6 @@ export default class ImController {
       this.InventoryModel.create(this.itemToAdd);
     });
   }
-
   delete(index) {
     console.log('deleting item at index', index);
     this.InventoryModel.removeItemById(this.items[index]);
