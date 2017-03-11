@@ -26,11 +26,12 @@ import main from './main/main.component';
 import constants from './app.constants';
 import util from '../components/util/util.module';
 import Debuger from './app.service';
+import Modal from '../components/modal/modal.service';
 
 import './app.css';
 
 angular.module('learningcurveApp', [ngCookies, ngResource, ngSanitize, uiRouter, uiBootstrap, _Auth,
-  account, admin, navbar, footer, main, constants, util, im
+  account, admin, navbar, footer, main, constants, util, im, Modal
 ])
   .config(routeConfig)
   .service('Debuger', Debuger)

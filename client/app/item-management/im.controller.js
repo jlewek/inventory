@@ -9,6 +9,7 @@ export default class ImController {
   constructor($http, InventoryModel, Modal, Debuger) {
     this.$http = $http;
     this.InventoryModel = InventoryModel;
+    window.Modal = Modal;
     this.Modal = Modal;
     this.Debuger = Debuger;
   }
@@ -16,14 +17,16 @@ export default class ImController {
   $onInit() {
     this.items = [];
 
-    this.InventoryModel.getAll().then((docs) => {
+
+    this.InventoryModel.getAll().then((data) => {
+      var docs = data.data;
       if (angular.isArray(docs)) {
         this.items = docs;
       } else {
-        this.Debuger.log();
+        this.Debuger.log(true, 'ImController: docs are not array');
       }
     }, () => {
-      console.log('f');
+      console.log('ImController: failed to fetched.');
     });
   }
 
