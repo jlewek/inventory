@@ -29,10 +29,10 @@ InventoryItem.methods.getItemById = function (body, callback) {
     return this.findById(id);
 }
 
-InventoryItem.methods.create = function (body) {
+InventoryItem.methods.create = function (body, cb) {
     var newItem = new InventoryItem(Object.assign({}, body.doc));
     newItem.created = new Date();
-    return newItem.save();
+    return newItem.save(cb);
 }
 
 InventoryItem.methods.removeItem = function (body) {

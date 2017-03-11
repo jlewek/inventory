@@ -8,10 +8,13 @@ module.exports = {
 };
 
 function create (req, res, next) {
-    console.log(create, req.body);
-    return Inventory.create(req.body)
+    var newItem = new Inventory(req.body.doc);
+    newItem.created = new Date();
+
+    return newItem.save()
     .then(respondWithResult(res, 201))
     .catch(handleError(res));
+    
 }
 
 function remove (req, res, next) {
