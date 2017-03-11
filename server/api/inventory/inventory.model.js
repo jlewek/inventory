@@ -17,16 +17,32 @@ var InventoryItem = new mongoose.Schema({
   ],
   created: Date,
   removed: Date,
-  canBeRemoved: Boolean,
+  _canBeRemoved: Boolean,
   img: [
       { name: String, type: String, content: Buffer }
   ],
-  room: String
+  room: String,
+  user: { type: mongoose.Schema.ObjectId, ref: 'User' }
 });
 
 InventoryItem.methods.getItemById = function (body, callback) {
-    
     return this.findById(id);
+}
+
+InventoryItem.methods.create = function (body) {
+    var newItem = new InventoryItem(Object.assign({}, body));
+    newItem.created = new Date();
+    return newItem.save(newItem);
+}
+
+InventoryItem.methods.removeItem = function (body) {
+    var id = body.id;
+    return new Promise(function (resolve, reject) {
+        this.findById(id).then(function (doc) {
+            resolve();
+            doc.remove();
+        }).catch(reject);
+    });
 }
 
 module.exports = mongoose.model('InventoryItem', InventoryItem);

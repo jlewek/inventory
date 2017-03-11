@@ -20,13 +20,24 @@ function remove (req, res, next) {
 }
 
 function get (req, res, next) {
-    return Inventory.getItemById(req.query)
+    var id = req.param.id;
+    if (!req.param.id) {
+        return handleError(res)({ msg: `Wrong or no id specified: ${id}` });
+    }
+    return Inventory.getItemById(id)
     .then(respondWithResult(res, 200))
     .catch(handleError(res));
 }
 
 function find (req, res, next) {
+    var query = {
+        $or: [
+            { 'name': { $regex: req.body.query, $options: 'i' } },
+            { 'room': { $regex: req.body.query, $options: 'i' } }
+        ]
+    };
 
+    return Inventory.find(query);
 }
 
 function handleError(res, statusCode) {
