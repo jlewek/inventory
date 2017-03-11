@@ -52,4 +52,5 @@ angular.element(document)
     angular.bootstrap(document, ['learningcurveApp'], {
       strictDi: true
     });
+    $.material.init();
   });
