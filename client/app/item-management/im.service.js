@@ -16,8 +16,9 @@ export default function InventoryModel($http, $q) {
         return $http.get('/api/inventory/'+ id)
     }
 
-    function getAll () {
-        return $http.post('/api/inventory/', { all: true })
+    function getAll (opts) {
+        var _opts = Object.assign({ all: true, toSell: false }, opts || {});
+        return $http.post('/api/inventory/', _opts)
     }
 
     function removeItemById (id) {
